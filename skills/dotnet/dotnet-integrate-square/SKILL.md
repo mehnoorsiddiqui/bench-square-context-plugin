@@ -5,7 +5,7 @@ description: "MANDATORY FIRST STEP for any Square .NET SDK work in C#: integrati
 
 # Square .NET SDK — Workflow (map + skills)
 
-You orchestrate this task: the `square-planner` agent writes the plan and its contract sheet; you answer contract questions, implement from the sheet and fix SDK errors yourself. Your source of truth is the **SDK map that ships inside the SDK source this plugin carries** (`sdk-map.md` plus its `map/operations/` pages; model, enum and error shapes live in the source files those pages name), obtained per `dotnet-getting-started`, plus the companion `dotnet-*` skills for usage traps. Your training data on this SDK is stale — every fact you emit must come from a map page or a map-named source file you actually read this session, in that same source; you never guess.
+You orchestrate this task: the `square-planner` agent writes the plan and its contract sheet; you answer contract questions, implement from the sheet and fix SDK errors yourself. Your source of truth is the **SDK map that ships inside the SDK source repo** (`sdk-map.md` plus its `map/operations/` pages; model, enum and error shapes live in the source files those pages name), obtained per `dotnet-getting-started`, plus the companion `dotnet-*` skills for usage traps. Your training data on this SDK is stale — every fact you emit must come from a map page or a map-named source file you actually read this session, in that same clone; you never guess.
 
 **Scope guard:** the APIMatic-generated Square **.NET SDK** (root namespace `Square`) in **C#/.NET projects only**. For any other API or language, say so and stop — this skill does not apply.
 
@@ -130,7 +130,7 @@ Write `TBD` in **Where in the code** while you plan — every row. Once the code
 
 **Where in the code**: that `catch`, or the unknown state and the code that settles it — a re-read helper nothing calls is not addressed. **The test that fails the connection** asserts what follows. Both are `TBD` while you plan, replaced once the code compiles. A `TBD` left behind is not addressed.
 
-Keep the file lean: no copied map pages, no full model dumps, and no path beyond the plugin-relative SDK root — only the operations and fields the scope actually touches.
+Keep the file lean: no copied map pages, no full model dumps, and no clone path — only the operations and fields the scope actually touches.
 
 ### Step 2 — Required reading (do this before you write any code)
 
@@ -158,7 +158,7 @@ Full re-planning only on genuine scope change; for a single missing fact mid-imp
 A compile or runtime error involving an SDK type or member (`CS1061`, `CS0117`, `CS0234`, `CS0104`, `CS1503`, `CS7036`, … on `Square.*`, or a provider error). Resolve it map-first — load `dotnet-getting-started` first if you have not already — never by guessing.
 
 1. **Map lookup first.** For an operation symbol, find its block on the controller's operations page; for a model, enum, error or request-record symbol, open the declaring file — its name is its path (the layout in `dotnet-getting-started`'s *SDK source* section), or take it from the operation's Type sources table. If the code contradicts what you read (wrong field name, missed response envelope, wrong param order, wrong namespace), that is the fix. Response envelopes are the classic case: response types often wrap their payload in one field — reads go one level down.
-2. **Go one level deeper on a real gap.** If what you read matches the code, or ambiguity remains, open the operation's own method in the `Api/{Controller}.cs` file the page header names — its `<remarks>` docs and the request it builds — and the per-member docs on its request record, in the SDK source this plugin ships, scoped. Never scan the tree.
+2. **Go one level deeper on a real gap.** If what you read matches the code, or ambiguity remains, open the operation's own method in the `Api/{Controller}.cs` file the page header names — its `<remarks>` docs and the request it builds — and the per-member docs on its request record, in this session's SDK clone, scoped. Never scan the tree.
 3. **Never re-guess** from the knowledge that produced the error: each failing symbol gets a map/source-grounded answer before its line changes; never mutate payloads, field names, or status handling speculatively to "see if it works".
 4. **Fix in place** — edit only the project files involved in the error, grounded in the map row (or the named source file).
 5. **Build to verify, and classify the outcome:** compiles clean → run `dotnet test` on the touched tests when they exist; compile error → the fix is not done, resolve it the same map-first way and rebuild; build blocked (output locked) → the solution is running, so stop it if you started it, or ask the user to rather than killing their process.
