@@ -1,6 +1,6 @@
 {
   "name": "bench-square",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Integrate and consume the APIMatic-generated Square SDK — bundled skills for C#/.NET.",
   "skills": "./skills",
   "interface": {
