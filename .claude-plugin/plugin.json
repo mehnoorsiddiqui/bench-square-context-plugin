@@ -1,0 +1,13 @@
+{
+  "name": "bench-square",
+  "displayName": "Bench Square",
+  "version": "1.0.0",
+  "description": "Integrate and consume the APIMatic-generated Square SDK — bundled skills for C#/.NET.",
+  "license": "MIT",
+  "skills": [
+    "./skills/dotnet"
+  ],
+  "agents": [
+    "./scoped/agents/square-planner.md"
+  ]
+}
