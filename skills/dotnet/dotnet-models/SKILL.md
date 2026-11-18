@@ -190,7 +190,7 @@ every enum, so `{EnumType}.TryGetKnownValue(...)` needs no extra `using`. This s
 `JsonSerializer`, a `[JsonConverter]` or reflection (that compiles, but it is a defect):
 
 - `string` → enum, written: resolve with `TryGetKnownValue`, and decide explicitly (and report) what an undeclared value does.
-- `string` → enum, compared: use the declared member, as in `list.Contains({EnumType}.{Member})`, not the old string.
+- `string` → enum, compared: use the declared member, as in `x == {EnumType}.{Member}` or `list.Contains({EnumType}.{Member})`. Comparing with the old string constant (`.Any(v => v == "RAW")`) still compiles, but leaves a stringly-typed check on a field the SDK now types.
 - scalar → union: build and read it as *Polymorphic union types* describes.
 - optional → `required`: set it; if the code has no value for it, report that rather than inventing one.
 
